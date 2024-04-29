@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <link href="style/style.css" rel="stylesheet" />
+    <script type="module" src="js/app.js" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a id="first" href="index.html">
+            <p>Acceuil</p>
+        </a>
+        <a href="inscription.html">
+            <p>S'inscrire</p>
+        </a>
+        <a href="connection.html">
+            <p>Se connecter</p>
+        </a>
+        <a href="profil.html">
+            <p>Profil</p>
+        </a>
+        <a href="jouer.html">
+            <p>Jouer</p>
+        </a>
+    </nav>
+    <h2>Inscrivez-vous</h2>
+    <form method="post" class="formulaire">
+        <label for="">Nom d'utilisateur</label>
+        <input type="text" id="nameuser" value="3 caratères minimum">
+        <label for="">Entrez votre email</label>
+        <input type="email" id="email" value="Email">
+        <label for="">Mot de passe</label>
+        <input type="password" id="mdp" value="votre mot de passe">
+        <p class="mdp">Au moins un symbole, un chiffre, ainsi que 6 caractères minimum.</p>
+        <label for="">confirmer votre mot de passe</label>
+        <input type="password" id="mdp2" value="votre mot de passe">
+        <div>
+            <button type="submit">Création du compte</button>
+            <button type="reset">Annuler</button>
+        </div>
+    </form>
+</body>
+</html>
