@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connection</title>
+    <link href="style/style.css" rel="stylesheet" />
+    <script type="module" src="js/app.js" defer></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a id="first" href="index.html">
+            <p>Acceuil</p>
+        </a>
+        <a href="inscription.html">
+            <p>S'inscrire</p>
+        </a>
+        <a href="connection.html">
+            <p>Se connecter</p>
+        </a>
+        <a href="profil.html">
+            <p>Profil</p>
+        </a>
+        <a href="jouer.html">
+            <p>Jouer</p>
+        </a>
+    </nav>
+    <h2>Connection-vous</h2>
+    <form method="post" class="formulaire">
+            <label for="">Nom d'utilisateur</label>
+            <input type="text" id="nameuser" value="">
+        <label for="">Entrez votre email</label>
+        <input type="email" id="email" value="">
+        <p>Choix du Memory</p>
+        <select>
+            <option id="legume">fvd</option>
+            <option id="dinosaures">fvd</option>
+            <option id="animaux">fvd</option>
+            <option id="jsp">fvd</option>
+        </select>
+            <img alt="memory" src="ressource/dinosaures/1.jpg">
+            
+            <p>Taille du Memory</p>
+            <select>
+                <option id="small">4</option>
+                <option id="medium">6</option>
+                <option id="large">8</option>
+                <option id="big">10</option>
+            </select>
+
+        <div>
+            <button type="submit">Enregistre option</button>
+        </div>
+    </form>
+    <p> Derniers Scores :</p>
+        <table border="1">
+            <th>
+                <td> Pseudo</td>
+            </th>
+            <th>
+                <td> Score</td>
+            </th>
+            <th>
+                <td> Taille</td>
+            </th>
+            <th>
+                <td> Choix Memory</td>
+            </th>
+            <th>
+                <td> Date</td>
+            </th>
+        </table>
+</body>
+
+</html>
