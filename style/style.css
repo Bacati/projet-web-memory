@@ -32,7 +32,7 @@ body{
     padding: 3%;
     width: 40%;
     margin: 0 auto;
-    margin-top: 1%;
+    margin-top: 2%;
     border-radius: 3%;
 }
 .resp{
@@ -80,4 +80,17 @@ body{
     padding: 0;
     font-size: 14px;
     margin: 0;
+}
+.mytab{
+    width: 70%;
+    border: 1px solid;
+    border-collapse: collapse;
+}
+.mytab th {
+    border-right: 1px solid;
+}
+.tabmemory img{
+    width: 95%;
+    padding: 3%;
+    background-color: rgb(221, 208, 208);
 }
