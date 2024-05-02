@@ -1,45 +1,33 @@
-/*var cards = document.querySelectorAll('.card');
-cards.forEach(function(card) {
-	card.addEventListener('click', function() {
-		card.classList.toggle('is-flipped');
-	});
-});
+const modal = document.querySelector(".modal");
+const closeButton = document.querySelector(".close-button");
 
-//Fonction qui place les éléments du tableau de manière random
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
-
-  while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-  }
-
-  return array;
+function toggleModal() {
+  modal.classList.toggle("show-modal");
 }
-const myArray = ["ressource/dinosaures/4.jpg", "ressource/dinosaures/4.jpg", "ressource/dinosaures/1.jpg", "ressource/dinosaures/1.jpg", "ressource/dinosaures/2.jpg", "ressource/dinosaures/2.jpg", "ressource/dinosaures/3.jpg", "ressource/dinosaures/3.jpg", "ressource/dinosaures/5.jpg", "ressource/dinosaures/5.jpg", "ressource/dinosaures/6.jpg", "ressource/dinosaures/6.jpg", "ressource/dinosaures/7.jpg", "ressource/dinosaures/7.jpg", "ressource/dinosaures/8.jpg", "ressource/dinosaures/8.jpg"];
-const shuffledArray = shuffle(myArray); 
 
-console.log(shuffledArray);*/
+function windowOnClick(event) {
+  if (event.target === modal) {
+      toggleModal();
+  }
+}
 
+closeButton.addEventListener("click", toggleModal);
+window.addEventListener("click", windowOnClick);
 
-
-
-//assign elements of HTML
-const cardsBox = document.querySelector(".tabmemory");
-const gameOverMessage = document.querySelector(".card");
-const restartGameBtn = gameOverMessage.querySelector(
-  ".game-over-message__container #btn-restart-game"
-);
-
+let cardTest = [];
 let cards = [
-  "<img src='ressource/dinosaures/4.jpg'>",
-  "<img src='ressource/dinosaures/1.jpg'>",
-  "<img src='ressource/dinosaures/2.jpg'>",
-  "<img src='ressource/dinosaures/3.jpg'>",
+  "ressource/dinosaures/4.jpg",
+  "ressource/dinosaures/1.jpg",
+  "ressource/dinosaures/2.jpg",
+  "ressource/dinosaures/3.jpg",
+  "ressource/dinosaures/5.jpg",
+  "ressource/dinosaures/6.jpg",
+  "ressource/dinosaures/7.jpg",
+  "ressource/dinosaures/8.jpg",
+  "ressource/dinosaures/9.jpg",
+  "ressource/dinosaures/10.jpg",
 ];
+
 cards = cards.concat(cards);
 
 
@@ -56,46 +44,186 @@ function shuffle(cards) {
 
   return cards;
 }
-shuffle(cards);
 
-let clickBlocked = false;
+let shuffledCards = shuffle(cards);
 
-
-function viewTheCards(card) {
-  card.classList.add("untapped");
-  setTimeout(() => {
-    card.classList.remove("untapped");
-  });
+function createCards() {
+  for (let card of shuffledCards) {
+      const li = document.createElement("LI");
+      li.classList.add("card");
+      const i = document.createElement("i");
+      const img = document.createElement("img");
+      img.src = card;
+      img.classList.add("hidden");
+      li.appendChild(img);
+      i.classList.toggle("fa");
+      if (card === "plane") {
+          i.classList.toggle("fa-paper-plane-o");
+      }
+      const deck = document.querySelector('.deck');
+      li.appendChild(i);
+      deck.appendChild(li);
+  }
 }
 
-function createBoxCard(cardIcon) {
-  const boxCard = document.createElement("div");
+const ul = document.querySelector('.deck');
+let moves = document.querySelector(".moves");
+let movesCounter = 0;
+let stars = 3;
+let match = 0;
+let isfirstClick = true;
+let isRestart = false;
 
-  boxCard.classList.add("card__item");
-
-  boxCard.innerHTML = `<div class="card-items-container">
-  <span class="card-item__icon">${cardIcon}</span>
-  <span class="card-item__cover"></span>
-  </div>`;
-
-  return boxCard;
+function initGame() {
+  createCards();
+  const card = document.querySelectorAll('.card');
+  for (let i = 0; i < card.length; i++) {
+      card[i].addEventListener("click", function (event) {
+          if (card[i] !== event.target) return;
+          if (event.target.classList.contains("show")) return;
+          showCard(event.target);
+          setTimeout(addCard, 550, shuffledCards[i], event.target, cardTest, i);
+      }, false);
+  }
 }
 
-cards.forEach((card) => {
-  const boxCard = createBoxCard(card);
+function showCard(card) {
+  card.classList.add('show');
+  const img = card.querySelector("img");
+  img.classList.remove("hidden");
+}
 
-  cardsBox.appendChild(boxCard);
 
-  boxCard.addEventListener("click", (e) => {
-    if (clickBlocked) {
-      return;
-    }
+function addCard(card, cardHTML, testList, pos) {
+  if (isRestart) {
+      testList.length = 0;
+      isRestart = false;
+  }
+  testList.push(card);
+  testList.push(cardHTML)
+  testList.push(pos);
+  if (testList.length === 6) {
+      updateMoveCounter();
+      testCards(testList[0], testList[1], testList[2], testList[3], testList[4], testList[5]);
+      testList.length = 0;
+  }
+}
 
-    clickBlocked = true;
+function testCards(card1, html1, x1, card2, html2, x2) {
+  if (card1 === card2 && x1 != x2) {
+      cardsMatch(html1, html2);
+  } else {
+      cardsDontMatch(html1, html2);
+  }
+}
 
-    if (!boxCard.classList.contains("untapped")) {
-      boxCard.classList.add("untapped");
-    }
-  });
+function cardsMatch(card1, card2) {
+  card1.classList.add('match');
+  card2.classList.add('match');
+  match++;
+  if (match === 10) {
+      win();
+  }
+}
+
+function cardsDontMatch(card1, card2) {
+  card1.classList.toggle('no-match');
+  card2.classList.toggle('no-match');
+  setTimeout(function () {
+      card1.classList.toggle('no-match');
+      card2.classList.toggle('no-match');
+      card1.classList.toggle('show');
+      card2.classList.toggle('show');
+      const img1 = card1.querySelector("img");
+      const img2 = card2.querySelector("img");
+      img1.classList.add("hidden");
+      img2.classList.add("hidden");
+  }, 1000);
+}
+
+
+function win() {
+  toggleModal();
+  const stats = document.querySelector(".stats");
+  if (s % 60 < 10) {
+      stats.textContent = "You won with: " + stars + " stars in " + movesCounter + " moves";
+  } else {
+      stats.textContent = "You won with: " + stars + " stars in " + movesCounter + " moves";
+  }
+}
+
+function updateMoveCounter() {
+  movesCounter++;
+  moves.textContent = "Nombre de coups : " + movesCounter;
+  if (movesCounter === 13) {
+      let star = document.querySelector("#star3");
+      star.classList.toggle("fa-star");
+      star.classList.add("fa-star-o");
+      stars--;
+  } else if (movesCounter === 25) {
+      let star = document.querySelector("#star2");
+      star.classList.toggle("fa-star");
+      star.classList.add("fa-star-o");
+      stars--;
+  } else if (movesCounter === 35) {
+      let star = document.querySelector("#star1");
+      star.classList.toggle("fa-star");
+      star.classList.add("fa-star-o");
+      stars--;
+  }
+}
+
+let restart = document.querySelector(".restart");
+restart.addEventListener("click", restartGame, false);
+function restartGame() {
+  movesCounter = 0;
+  match = 0;
+  s = 0;
+  m = 0;
+  isfirstClick = true;
+  isRestart = true;
+  const deck = document.querySelector('.deck');
+  var elements = deck.getElementsByClassName("card");
+
+  while (elements[0]) {
+      elements[0].parentNode.removeChild(elements[0]);
+  }
+  shuffledCards = shuffle(cards);
+  moves.textContent = "Nombre de coups : " + movesCounter;
+
+  resetStars();
+  initGame();
+}
+
+function resetStars() {
+  stars = 3;
+  let star = document.querySelector("#star3");
+  star.classList.remove("fa-star");
+  star.classList.remove("fa-star-o");
+  star.classList.add("fa-star");
+
+  star = document.querySelector("#star2");
+  star.classList.remove("fa-star");
+  star.classList.remove("fa-star-o");
+  star.classList.add("fa-star");
+
+  star = document.querySelector("#star1");
+  star.classList.remove("fa-star");
+  star.classList.remove("fa-star-o");
+  star.classList.add("fa-star");
+}
+
+const newGameButton = document.querySelector(".new-game");
+newGameButton.addEventListener("click", newGame);
+function newGame() {
+  toggleModal();
+  restartGame();
+}
+
+initGame();
+
+document.addEventListener('keydown', function (event) {
+  if (event.code === 'Space') {
+    location.reload();
+  }
 });
-

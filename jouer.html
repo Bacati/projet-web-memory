@@ -52,48 +52,39 @@
                 </table>
             <p>tentez de gagner avec le moins d'essais possible.</p>
             <p>Appuyez sur la <b>barre d'espace</b> pour relancer le jeu.</p>
-            <p>Nombre de coups : 0</p>
+            <span class="moves">Nombre de coups : 0</span>
             <div class="memory">
-                <table class="tabmemory">
-                    <tr>
-                        <td>
-                            <div class="card">
-                             </div>
-                        </td>
-                        <td>
-                            <div class="card">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="card">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="card">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="card">
-                            </div>
-                        </td>
-                    <td>
-                        <div class="card">
-                        </div>
-                    </td>
-                           <td>
-                            <div class="card">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="card">
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+                <section class="score-table">
+                    <ul class="stars">
+                        <li>
+                            <i id="star1" class="fa fa-star"></i>
+                        </li>
+                        <li>
+                            <i id="star2" class="fa fa-star"></i>
+                        </li>
+                        <li>
+                            <i id="star3" class="fa fa-star"></i>
+                        </li>
+                    </ul>
+                    <div class="restart">
+                        <i class="fa fa-repeat"></i>
+                    </div>
+                </section>
+                <div class="tabmemory">
+                    <main>
+                        <ul class="deck"></ul>
+                    </main>
+                </div>
+                <div class="modal">
+                    <div class="modal-content">
+                         <span class="close-button">x</span>
+                        <i class="fa fa-check-circle tick"></i>
+                        <h1 class="modal-heading">Bravo tu as gagné</h1>
+                        <button class="new-game">Jouer a nouveau!</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </div>   
 </body>
 </html>
