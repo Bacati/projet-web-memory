@@ -121,10 +121,9 @@ body{
 
 .deck {
     margin: 0;
-    width: 600px;
+    width: 400%;
     min-height: 500px;
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -132,10 +131,10 @@ body{
 .card {
     transform: rotateY(0);
     transition: 0.5s;
-    width: 125px;
+    width: 20%;
     height: 125px;
-    background: url(/ressource/question.svg);
-    background-size: cover;
+    background: url(/ressource/question.svg) no-repeat center;
+    background-size: contain;
     box-shadow: 5px 5px 24px -3px rgba(0, 0, 0, 0.75);
     border-radius: 8px;
     font-size: 0;
@@ -143,8 +142,9 @@ body{
     align-items: center;
     justify-content: center;
     list-style: none;
-    margin-top: 15px;
+    margin-top: 2%;
     cursor: pointer;
+    margin-left: 2%;  
 }
 
 .show {
