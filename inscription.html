@@ -6,6 +6,7 @@
     <title>Inscription</title>
     <link href="style/style.css" rel="stylesheet" />
     <script type="module" src="js/app.js" defer></script>
+    <script type="module" src="js/mdp.js" defer></script>
 </head>
 <body>
     <h1>ENI - MEMORY - Inscription</h1>
@@ -27,19 +28,25 @@
         </a>
     </nav>
     <form method="post" class="formulaire">
-        <h2>Inscrivez-vous</h2>
-        <label for="">Nom d'utilisateur</label>
-        <input type="text" id="nameuser" value="3 caratères minimum">
-        <label for="">Entrez votre email</label>
-        <input type="email" id="email" value="Email">
-        <label for="">Mot de passe</label>
-        <input type="password" id="mdp" value="votre mot de passe">
-        <p class="mdp">Au moins un symbole, un chiffre, ainsi que 6 caractères minimum.</p>
-        <label for="">confirmer votre mot de passe</label>
-        <input type="password" id="mdp2" value="votre mot de passe">
-        <div>
-            <button type="submit">Création du compte</button>
-            <button type="reset">Annuler</button>
+        <div class="group">
+            <h2>Inscrivez-vous</h2>
+            <label for="">Nom d'utilisateur</label>
+            <input required="required" minlength="3" type="text" id="nameuser" placeholder="3 caratères minimum" value=""  oninvalid="this.setCustomValidity('Saisir un nom d\'utilisateur correct')" oninput="this.setCustomValidity('')">
+            <label for="">Entrez votre email</label>
+            <input required="required" type="email" id="email" placeholder="Email" value="" oninvalid="this.setCustomValidity('Saisir une email valide')" oninput="this.setCustomValidity('')">
+            <label for="">Mot de passe</label>
+            <input required="required" minlength="6" type="password" id="password" placeholder="votre mot de passe" oninvalid="this.setCustomValidity('Saisir un mot de passe valide')" oninput="this.setCustomValidity('')">
+            <p class="mdp">Au moins un symbole, un chiffre, ainsi que 6 caractères minimum.</p>
+            <div class="power-container">
+                <div id="power-point"></div>
+            </div>
+            <div id="strength-output"></div>
+            <label for="">confirmer votre mot de passe</label>
+            <input type="password" id="confirmPasswordInput" value="" placeholder="votre mot de passe" oninvalid="this.setCustomValidity('Mot de passe pas identique')" oninput="this.setCustomValidity('')">
+            <div>
+                <button type="submit">Création du compte</button>
+                <button type="reset">Annuler</button>
+            </div>
         </div>
     </form>
 </body>
