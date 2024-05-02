@@ -69,7 +69,6 @@ function createCards() {
 const ul = document.querySelector('.deck');
 let moves = document.querySelector(".moves");
 let movesCounter = 0;
-let stars = 3;
 let match = 0;
 let isfirstClick = true;
 let isRestart = false;
@@ -146,31 +145,15 @@ function win() {
   toggleModal();
   const stats = document.querySelector(".stats");
   if (s % 60 < 10) {
-      stats.textContent = "You won with: " + stars + " stars in " + movesCounter + " moves";
+      stats.textContent = "You won with: " + movesCounter + " moves";
   } else {
-      stats.textContent = "You won with: " + stars + " stars in " + movesCounter + " moves";
+      stats.textContent = "You won with: " + movesCounter + " moves";
   }
 }
 
 function updateMoveCounter() {
   movesCounter++;
   moves.textContent = "Nombre de coups : " + movesCounter;
-  if (movesCounter === 13) {
-      let star = document.querySelector("#star3");
-      star.classList.toggle("fa-star");
-      star.classList.add("fa-star-o");
-      stars--;
-  } else if (movesCounter === 25) {
-      let star = document.querySelector("#star2");
-      star.classList.toggle("fa-star");
-      star.classList.add("fa-star-o");
-      stars--;
-  } else if (movesCounter === 35) {
-      let star = document.querySelector("#star1");
-      star.classList.toggle("fa-star");
-      star.classList.add("fa-star-o");
-      stars--;
-  }
 }
 
 let restart = document.querySelector(".restart");
@@ -191,26 +174,7 @@ function restartGame() {
   shuffledCards = shuffle(cards);
   moves.textContent = "Nombre de coups : " + movesCounter;
 
-  resetStars();
   initGame();
-}
-
-function resetStars() {
-  stars = 3;
-  let star = document.querySelector("#star3");
-  star.classList.remove("fa-star");
-  star.classList.remove("fa-star-o");
-  star.classList.add("fa-star");
-
-  star = document.querySelector("#star2");
-  star.classList.remove("fa-star");
-  star.classList.remove("fa-star-o");
-  star.classList.add("fa-star");
-
-  star = document.querySelector("#star1");
-  star.classList.remove("fa-star");
-  star.classList.remove("fa-star-o");
-  star.classList.add("fa-star");
 }
 
 const newGameButton = document.querySelector(".new-game");
