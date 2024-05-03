@@ -145,9 +145,9 @@ function win() {
   toggleModal();
   const stats = document.querySelector(".stats");
   if (s % 60 < 10) {
-      stats.textContent = "You won with: " + movesCounter + " moves";
+      stats.textContent = "Vous avez gagnez avec : " + movesCounter + " coups";
   } else {
-      stats.textContent = "You won with: " + movesCounter + " moves";
+      stats.textContent = "Vous avez gagnez avec " + movesCounter + " coups";
   }
 }
 
