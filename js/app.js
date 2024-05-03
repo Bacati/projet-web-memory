@@ -120,7 +120,7 @@ function cardsMatch(card1, card2) {
   card1.classList.add('match');
   card2.classList.add('match');
   match++;
-  if (match === 1) {
+  if (match === 10) {
       win();
   }
 }
