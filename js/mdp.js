@@ -4,11 +4,11 @@ password.oninput = function () {
     let point = 0; 
     let value = password.value; 
     let widthPower =  
-        ["1%", "50%", "75%", "100%"]; 
+        ["1%","25%", "50%", "75%", "100%"]; 
     let colorPower =  
-        ["#D73F40", "#DC6551", "#F2B84F", "#BDE952"]; 
+        ["#D73F40", "#DC6551", "#F2B84F", "#BDE952","#B5FF00"]; 
     let messagePower = 
-    ["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;faible", "moyen", "fort", "très fort"];
+    ["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;faible", "moyen", "fort", "très fort","incracable"];
     if (value.length >= 6) { 
         let arrayTest =  
             [/[0-9]/, /[a-z]/, /[A-Z]/, /[^0-9a-zA-Z]/]; 
