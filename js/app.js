@@ -143,12 +143,6 @@ function cardsDontMatch(card1, card2) {
 
 function win() {
   toggleModal();
-  const stats = document.querySelector(".stats");
-  if (s % 60 < 10) {
-      stats.textContent = "Vous avez gagnez avec : " + movesCounter + " coups";
-  } else {
-      stats.textContent = "Vous avez gagnez avec " + movesCounter + " coups";
-  }
 }
 
 function updateMoveCounter() {
@@ -157,12 +151,10 @@ function updateMoveCounter() {
 }
 
 let restart = document.querySelector(".restart");
-restart.addEventListener("click", restartGame, false);
+restart.addEventListener("click", restartGame);
 function restartGame() {
   movesCounter = 0;
   match = 0;
-  s = 0;
-  m = 0;
   isfirstClick = true;
   isRestart = true;
   const deck = document.querySelector('.deck');
@@ -176,18 +168,18 @@ function restartGame() {
 
   initGame();
 }
-
+console.log(restart);
 const newGameButton = document.querySelector(".new-game");
 newGameButton.addEventListener("click", newGame);
 function newGame() {
   toggleModal();
-  location.reload();
+  restartGame();
 }
 
 initGame();
 
 document.addEventListener('keydown', function (event) {
   if (event.code === 'Space') {
-    location.reload();
+    restartGame();
   }
 });
