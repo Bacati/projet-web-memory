@@ -181,7 +181,7 @@ const newGameButton = document.querySelector(".new-game");
 newGameButton.addEventListener("click", newGame);
 function newGame() {
   toggleModal();
-  restartGame();
+  location.reload();
 }
 
 initGame();
